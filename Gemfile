@@ -9,14 +9,11 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
-
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
-# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails"
+# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -48,7 +45,23 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# Use Twitter Bootstrap library for front-end UI and layout
+gem 'bootstrap', '~> 5.2.3'
+# Bootstrap JavaScript can optionally use jQuery
+gem 'jquery-rails'
+# gem provides popper.js assets as a Ruby gem
+gem 'popper_js', '~> 2.11.5'
+
+# Use Font Awesome sass gem for adding icons
+gem "font-awesome-sass", "~> 6.3.0"
+
+# Use hirb for better database table display in console
+gem 'hirb'
+
+gem "sqlite3", "~> 1.3"
+
 group :development, :test do
+  # Use sqlite3 as the database for Active Record
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
@@ -64,10 +77,14 @@ group :development do
   # gem "spring"
 end
 
+group :production do
+  # Use the PostgreSQL gem for Herkou production server
+  gem 'pg'
+end
+
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
